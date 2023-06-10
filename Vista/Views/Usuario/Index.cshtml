@@ -1,0 +1,59 @@
+﻿@model ML.Usuario
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        @using (Html.BeginForm("Index", "Usuario", FormMethod.Post, new { @class = "multipar/form-data" }))
+        {
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Opcion)
+                @Html.TextBoxFor(model => model.Opcion, new { @class = "form-control" })
+            </div>
+            <br />
+            <div>
+                <input class="button btn btn-success" type="submit" value="Enviar" />
+            </div>
+        }
+    </div>
+    <br />
+    <div class="row">
+        @if (Model.Usuarios != null)
+        {
+            <table class="table table-dark table-bordered" id="tblUsuario">
+                <thead>
+                    <tr>
+                        <td class="text-center" style="font-weight:bold;">IdUsuario</td>
+                        <td class="text-center" style="font-weight:bold;">Nombre Completo </td>
+                        <td class="text-center" style="font-weight:bold;">FechaNacimiento</td>
+                        <td class="text-center" style="font-weight:bold;">Edad</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ML.Usuario usuario in Model.Usuarios)
+                    {
+                        <tr>
+                            <td class="text-center">@usuario.IdUsuario</td>
+                            <td class="text-center">@usuario.Nombre @usuario.ApellidoPaterno @usuario.ApellidoMaterno</td>
+                            <td class="text-center">@usuario.FechaNacimiento</td>
+                            <td class="text-center">@usuario.Edad</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+
+        }
+
+    </div>
+</div>
+
+
+
+
+
+
